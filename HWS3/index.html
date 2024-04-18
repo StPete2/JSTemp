@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <p class="super_element">Привет</p>
+    <img src="https://placeimg.com/50/50/animals" alt="фото 1" />
+    <img src="https://placeimg.com/50/50/arch" alt="фото 2" />
+    <img src="https://placeimg.com/50/50/nature" alt="фото 3" />
+    <img src="https://placeimg.com/50/50/people" alt="фото 4" />
+    <img src="https://placeimg.com/50/50/tech" alt="фото 5" />
+    <img src="https://placeimg.com/50/50/tech/grayscale" alt="фото 6" />
+    <img src="https://placeimg.com/50/50/tech/sepia" alt="фото 7" />
+    <br />
+
+    <button>Кнопка</button>
+    <button class="super_element">Кнопка с классом btn</button>
+    <button>Кнопка</button>
+
+    <br />
+
+    <textarea></textarea>
+    <br />
+
+    <ul>
+        <li><button>Кнопка 1</button></li>
+        <li><button>Кнопка 2</button></li>
+        <li><button>Кнопка 3</button></li>
+        <li><button>Кнопка 4</button></li>
+    </ul>
+
+    <script>
+        "use strict";
+
+        // 1. Необходимо вывести сообщение в консоль "все теги прогрузились", когда все теги будут созданы браузером.
+        document.addEventListener("DOMContentLoaded", (event) => {
+            console.log('Все теги прогрузились');
+        });
+        // 2. Необходимо вывести сообщение в консоль "страница загрузилась", когда все ресурсы страницы будут загружены.
+        window.onload = (event) => {
+            console.log("Страница загрузилась");
+        };
+        window.addEventListener('load', function (event) {
+            console.log("Page is loaded");
+        });
+        // 3. При клике на какой-либо тег на странице в консоль должно выводиться сообщение наподобие:
+        // - Класс "super_element" присутствует в элементе "div".
+        // Сообщение должно определять присутствует или отсутствует класс "super_element" у элемента, а также выводить в нижнем регистре верный тег в данной строке, по которому был совершен клик.
+        // - Необходимо использовать делегирование.
+        const bodyEl = document.querySelector('body');
+        const childrenEls = bodyEl.children;
+        const superElementClass = 'super_element';
+        const childrenElsArray = [...childrenEls];
+        childrenElsArray.forEach(element => {
+            element.addEventListener('click', function (event) {
+                if (event.target.classList.contains(superElementClass)) {
+                    console.log(`Класс ${superElementClass} присутствует в элементе ${event.target.tagName.toLowerCase()}`);
+                } else {
+                    console.log(`Класс ${superElementClass} отсутствует в элементе ${event.target.tagName.toLowerCase()}`);
+                }
+            })
+        });
+        // bodyEl.addEventListener('click', function(event) {
+        //     console.log(event.target.tagName);
+        // });     
+        // 4. Сделайте, чтобы при наведении на textarea в консоли появлялось сообщение: "Вы навели на textarea."
+        const textArea = document.querySelector('textarea');
+        textArea.addEventListener('mouseover', function () {
+            console.log('Вы навели на textarea');
+        });
+        // 5. Необходимо повесить событие клика на тег ul. В обработчике события в консоль необходимо выводить текст, который записан внутри элемента кнопки, по которой был произведен клик. Если клик был не по кнопке, то ничего выводить не нужно. Необходимо использовать делегирование.
+        const ulEl = document.querySelector('ul');
+        ulEl.addEventListener('click', function (event) {
+            if (event.target.tagName === 'BUTTON') {
+                console.log(event.target.innerHTML);
+            }
+        });
+        //Почему не сработал метод event.target.hasChildNodes(); JS отрабатывает так, что и Button, и Li все имеют childNodes, хотя по логике Button не имеет ChildNodes. Или это были текстовые ноды?
+
+        // 6. Вопрос: Почему в console.log пишется сначала текст из 5 задания и только потом выводится текст из 3 задания, если мы кликаем по кнопкам в ul? Ответ необходимо написать здесь же, под этим комментарием, своими словами.
+
+        // Ответ: А у меня вначале отрабатывает текст из задания №3, а потом уже из задания №5. Я считаю, что так и должно быть.
+
+        // 7. С помощью JS необходимо изменить цвет заднего фона каждого второго тега li.
+        const liEls = document.querySelectorAll('ul li');
+        for (let i = 1; i < liEls.length; i += 2) {
+            liEls[i].style.backgroundColor = '#ccc';
+        }
+
+    </script>
+</body>
+
+</html>
