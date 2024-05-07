@@ -1,0 +1,35 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 640px;
+}
+
+.play {
+    background-image: url(./img/play.svg);
+    width: 50px;
+    height: 50px;
+}
+
+.pause {
+    background-image: url(./img/pause.svg);
+    width: 50px;
+    height: 50px;
+    margin-left: 171px;
+}
+
+.container__buttons {
+    display: flex;
+    padding-left: 184px;
+}
+
+.container__controls {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 32px;
+    gap: 16px;
+}
