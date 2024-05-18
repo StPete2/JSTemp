@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="container__product">
+            <img src="./cart-item__img1.jpg" alt="product photo" class="product__img">
+            <h2 class="product__title"></h2>
+            <div class="product__description">
+                <p class="product__description_test"></p>
+            </div>
+            <div class="root"></div>
+        </div>
+    </div>
+
+    <script>
+        // 1) Дан массив const arr = [1, 5, 7, 9] с помощью Math.min и spread оператора, найти минимальное число в массиве, решение задание должно состоять из одной строки
+
+        const arr = [1, 5, 7, 9];
+        console.log('Ответ на задание № 1 (минимальное число в массиве):');
+        console.log(Math.min(...arr));
+
+        // 2) Напишите функцию createCounter, которая создает счетчик и возвращает объект с двумя методами: increment и decrement. Метод increment должен увеличивать значение счетчика на 1, а метод decrement должен уменьшать значение счетчика на 1. Значение счетчика должно быть доступно только через методы объекта, а не напрямую.
+
+        function createCounter() {
+            let counter = 0;
+            return {
+                increment() {
+                    return ++counter;
+                },
+                decrement() {
+                    return --counter;
+                }
+            }
+        }
+
+        const counter = createCounter();
+        console.log('Ответ на задание № 2');
+        // console.log('Возвращаем counter:');
+        // console.log(counter);
+        console.log('Увеличиваем counter:');
+        console.log(counter.increment());
+        console.log('Увеличиваем counter:');
+        console.log(counter.increment());
+        console.log('Уменьшаем counter');
+        console.log(counter.decrement());
+
+        // 3) Напишите рекурсивную функцию findElementByClass, которая принимает корневой элемент дерева DOM и название класса в качестве аргументов и возвращает первый найденный элемент с указанным классом в этом дереве.
+        // Пример
+        // const rootElement = document.getElementById('root');
+        // const targetElement = findElementByClass(rootElement, 'my-class');
+        // console.log(targetElement);
+
+        function findElementByClass(rootElement, className) {
+            if (rootElement.classList.contains(className)) {
+                return rootElement;
+            } else {
+                if (rootElement.hasChildNodes()) {
+                    const childrenRootElement = rootElement.children;
+                    // console.log(childrenRootElement);
+                    for (let i = 0; i < childrenRootElement.length; i++) {
+                        return findElementByClass(childrenRootElement[i], className);
+                    }
+                } else if (rootElement.nextElementSibling) {
+                    const siblingRootElement = rootElement.nextElementSibling;
+                    return findElementByClass(siblingRootElement, className);l
+                } else if (!rootElement.nextElementSibling && !rootElement.parentElement.nextElementSibling){
+                    console.log('Элемент с указанным классом в рут элементе не найден');
+                    return;
+                } else if (!rootElement.nextElementSibling) {
+                    // console.log(rootElement.parentElement.nextElementSibling);
+                    return findElementByClass(rootElement.parentElement.nextElementSibling, className);
+                }
+            }
+        }
+
+        const rootElement = document.querySelector('div.container');
+        
+        const targetElement = findElementByClass(rootElement, 'container');
+        // console.log(targetElement);        
+        const targetElement2 = findElementByClass(rootElement, 'container__product');
+        // console.log(targetElement2);
+        const targetElement3 = findElementByClass(rootElement, 'root');
+        // console.log(targetElement3);
+        const targetElement4 = findElementByClass(rootElement, 'noSuchClass');
+        console.log(targetElement4);
+    </script>
+</body>
+
+</html>
