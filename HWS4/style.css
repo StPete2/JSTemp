@@ -1,0 +1,32 @@
+.usersData__user {
+    padding: 0 16px;
+    border: 1px solid #ccc;
+    position: relative;
+    width: 40vw;
+}
+
+.usersData {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+    padding-left: 16px;
+    padding-top: 16px;
+}
+
+.usersData__user_button {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    border: none;
+    background: white;
+}
+
+.cross_svg {
+    width: 11px;
+    height: 11px;
+}
+
+.usersData__user_button:hover {
+    background: lightgray;
+    border: 1px solid lightgray;
+}
