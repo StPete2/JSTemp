@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+
+    <body>
+        <div class="dogsPhotos"></div>
+        <script type="module">
+            const link = "https://dog.ceo/api/breed/bulldog/images/random/10";
+            const getData = async (url) => {
+                try {
+                    const response = await fetch(url);
+                    const data = await response.json();
+                    return data;
+                } catch (error) {
+                    console.log(error);
+                }
+            };
+
+            const getDogsPhoto = await getData(link);
+            const divEl = document.querySelector("div.dogsPhotos");
+            console.log(getDogsPhoto);
+            const dogsPhotoArray = getDogsPhoto["message"];
+            console.log(dogsPhotoArray);
+            dogsPhotoArray.forEach((element) => {
+                // const imgEl = document.createElement('img');
+                // imgEl.src = element;
+                // divEl.appendChild(imgEl);
+            });
+
+            function delay() {
+                return new Promise((resolve) => setTimeout(resolve, 3000));
+            }
+
+            async function appendChilds(array) {
+                for (const element of array) {
+                    await delay();
+                    const imgEl = document.createElement("img");
+                    imgEl.src = element;
+                    divEl.appendChild(imgEl);
+                }
+            }
+
+            appendChilds(dogsPhotoArray);
+        </script>
+    </body>
+</html>
