@@ -87,7 +87,7 @@ reviewsData.forEach((element) => {
 // поймать данные, которые вводит пользователь
 let foundDeviceName = "";
 // console.log(newReviewNumber);
-
+const formEl = document.querySelector('form');
 const inputEl = document.querySelector("input.user-review");
 const buttonEl = document.querySelector("button.submit-button");
 
@@ -95,14 +95,18 @@ const selectValueEl = document.querySelector("select.list-of-devices");
 selectValueEl.addEventListener("change", () => {
     foundDeviceName = selectValueEl.value;
 });
+const errorEl = document.querySelector('p.error-text');
 
 buttonEl.addEventListener("click", () => {
     const newReviewNumberEl = document.createElement("p");
     const newReviewTextEl = document.createElement("p");
     newReviewTextEl.innerHTML = inputEl.value;
     if (inputEl.value.length < 3 || inputEl.value.length > 10) {
-        throw new Error("Отзыв не может быть меньше 3 и более 10 символов");
+        const errorText = "Отзыв не может быть меньше 3 и более 10 символов"
+        errorEl.innerHTML = errorText;
+        throw new Error(errorText);
     }
+    errorEl.innerHTML = "";
     let newReviewNumber = 0;
     reviewsData.forEach((el) => {
         newReviewNumber += el.reviews.length;
