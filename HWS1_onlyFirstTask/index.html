@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- <script src="draft.js"></script> -->
+    <script src="./task21.js" defer></script>
+    <style>
+        .submit-review-form {
+            margin-top: 32px;
+            margin-left: 32px;
+        }
+
+        .user-review {
+            margin-top: 16px;
+        }
+
+        .container-reviews {
+            width: 30vw;
+            margin-left: 32px;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="#" class="submit-review-form">
+        <select class="list-of-devices" id="devices">
+            <option disabled selected>Выберите модель для отзыва</option>
+            <option value="Apple iPhone 13">Apple iPhone 13</option>
+            <option value="Samsung Galaxy Z Fold 3">
+                Samsung Galaxy Z Fold 3
+            </option>
+            <option value="Sony PlayStation 5">Sony PlayStation 5</option>
+        </select><br />
+        <input type="text" class="user-review" />
+        <button class="submit-button">Добавить отзыв</button>
+    </form>
+    <div class="container-reviews">
+        <div class="device">
+            <h3 class="device-name"></h3>
+            <div class="reviews-box">
+                <div class="review">
+                    <p class="review-number"></p>
+                    <p class="review-text"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
